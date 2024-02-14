@@ -1,0 +1,17 @@
+.app-root {
+  .search-form {
+    margin-top: 30px;
+
+    &__alert {
+      color: red;
+    }
+  }
+
+  .stop-words {
+    margin-top: 30px;
+  }
+
+  .add-stop-word {
+    margin-top: 30px;
+  }
+}
