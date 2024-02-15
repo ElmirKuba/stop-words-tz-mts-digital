@@ -2,6 +2,37 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import { AppModule } from './app/app.module';
 
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  .catch((err) => console.error(err));
 
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+/*
+
+  1. некое поле ввода, куда вводим login пользователя
+
+https://baconipsum.com/api/?type=all-meat&paras=10&user=${USERNAME}
+
+
+
+--------------------------
+
+Есть чат в котором общаются пользователи.
+
+Мы пишем фичу для администратора этого чата.
+
+Администратор должен иметь возможность в админке (предположим что она уже есть) по имени пользователя получить записи этого пользователя
+API: https://baconipsum.com/api/?type=all-meat&paras=10&user=${USERNAME}
+USERNAME - администратор вводит в ручную
+
+Из полученных сообщениях нужно получить статистику стоп-слов и вывести для администатора в виде таблицы
+2. слово - количество употреблений
+3. слово - количество употреблений
+...
+
+Стоп слова: alcatra, pork, ham
+
+Бонусы:
+- Есть возможность добавлять свои стоп-слова
+- Есть возможномть выбрать стоп-слово и выводить сообщения с ним
+- Есть возможность автоматически выставлять бан если превышен % порог стоп-слов. Процент задает администратор.
+  */

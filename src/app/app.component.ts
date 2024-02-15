@@ -15,6 +15,7 @@ export class AppComponent implements OnInit, OnDestroy {
   public searchLogin: string = ``;
 
   stopWords: IStopWord[] = [];
+  selectedStopWord: string | null = null;
 
   searchForm = new FormGroup({
     searchInput: new FormControl(``, [
@@ -45,7 +46,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    const userLogin = this.searchForm.value as string;
+    const userLogin = this.searchForm.value.searchInput as string;
 
     this.subscriptionMessagesUser = this.appService
       .getUserMessagesWithUserLogin(userLogin)
@@ -116,5 +117,19 @@ export class AppComponent implements OnInit, OnDestroy {
     this.searchForm.setValue({
       searchInput: this.searchLogin,
     });
+  }
+
+  findMessagesUsingStopWord(stopWord: string) {
+    this.selectedStopWord = stopWord;
+
+    const messages = this.appService.findMessagesUsingStopWord(
+      this.selectedStopWord as string
+    );
+
+    this.setUserMessages(messages);
+
+    this.appService.resetUsedStopWords();
+
+    this.appService.recalculateStopWordStatistics(messages, this.stopWords);
   }
 }

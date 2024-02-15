@@ -45,6 +45,9 @@
         <td>{{ stopWord.numberUses }}</td>
         <td>
           <button (click)="deleteStopWord(stopWord.stopWord)">Удалить</button>
+          <button (click)="findMessagesUsingStopWord(stopWord.stopWord)">
+            Выбрать
+          </button>
         </td>
       </tr>
     </tbody>
@@ -87,4 +90,12 @@
       Некорректное стоп-слово (3-10 символов)
     </div>
   </form>
+
+  <div *ngIf="selectedStopWord !== null">
+    <h2>Выбранное слово: {{ selectedStopWord }} с совпадениями сообщений:</h2>
+
+    <ul>
+      <li *ngFor="let message of getUserMessages()">{{ message }}</li>
+    </ul>
+  </div>
 </div>

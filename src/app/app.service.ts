@@ -103,6 +103,12 @@ export class AppService {
     });
   }
 
+  findMessagesUsingStopWord(stopWord: string): string[] {
+    return this.userMessages.filter((message) => {
+      return message.indexOf(stopWord, 0) !== -1;
+    });
+  }
+
   ////////////////////////////////
 
   getUserMessagesWithUserLogin(loginUser: string): Observable<string[]> {
